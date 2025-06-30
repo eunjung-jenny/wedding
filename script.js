@@ -245,29 +245,20 @@ let marker;
 
 // 카카오맵 초기화
 function initKakaoMap() {
-  const apiKey = "YOUR_KAKAO_MAP_API_KEY";
-
-  if (apiKey === "YOUR_KAKAO_MAP_API_KEY") {
-    showMapError("API 키를 설정해주세요");
+  if (typeof kakao === "undefined" || !kakao.maps) {
+    showMapError("카카오맵 API가 로드되지 않았습니다");
     return;
   }
-
-  loadKakaoMapAPI(apiKey);
-}
-
-// 카카오맵 API 로드
-function loadKakaoMapAPI(apiKey) {
-  if (typeof kakao !== "undefined") {
+  if (typeof kakao.maps.load !== "function") {
+    showMapError(
+      "kakao.maps.load 함수가 없습니다. 스크립트 옵션을 확인하세요."
+    );
+    return;
+  }
+  kakao.maps.load(function () {
+    console.log("지도 생성 시작");
     createMap();
-    return;
-  }
-
-  const script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${apiKey}&libraries=services`;
-  script.onload = createMap;
-  script.onerror = () => showMapError("지도를 불러올 수 없습니다");
-  document.head.appendChild(script);
+  });
 }
 
 // 지도 생성
