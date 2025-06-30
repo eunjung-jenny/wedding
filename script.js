@@ -102,6 +102,7 @@ async function showInitialAnimation() {
 let currentSlideIndex = 1;
 const totalSlides = 8;
 let isTransitioning = false;
+const animationDuration = 200;
 
 // 갤러리 초기화
 function initGallery() {
@@ -121,12 +122,12 @@ function nextSlide() {
     setTimeout(() => {
       currentSlideIndex = 1;
       updateSlide(false);
-    }, 500);
+    }, animationDuration);
   }
 
   setTimeout(() => {
     isTransitioning = false;
-  }, 500);
+  }, animationDuration);
 }
 
 // 이전 슬라이드로 이동
@@ -142,12 +143,12 @@ function prevSlide() {
     setTimeout(() => {
       currentSlideIndex = totalSlides;
       updateSlide(false);
-    }, 500);
+    }, animationDuration);
   }
 
   setTimeout(() => {
     isTransitioning = false;
-  }, 500);
+  }, animationDuration);
 }
 
 // 슬라이드 위치 업데이트
