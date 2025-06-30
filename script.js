@@ -335,17 +335,11 @@ function showMapError(message) {
 
 // 외부 맵 열기
 function openKakaoMap() {
-  const address = encodeURIComponent(
-    "서울시 강동구 천호대로 1077 이스트센트럴타워"
-  );
-  window.open(`https://map.kakao.com/link/search/${address}`, "_blank");
+  window.open(`https://kko.kakao.com/K67AN7J__V`, "_blank");
 }
 
 function openNaverMap() {
-  const address = encodeURIComponent(
-    "서울시 강동구 천호대로 1077 이스트센트럴타워"
-  );
-  window.open(`https://map.naver.com/p/search/${address}`, "_blank");
+  window.open(`https://naver.me/5r9z4Z05`, "_blank");
 }
 
 function openTmap() {
