@@ -1,0 +1,499 @@
+/* ========================================
+   기본 스타일
+   ======================================== */
+
+body {
+  margin: 0;
+  background-color: rgba(226, 208, 208, 0.05);
+  user-select: none;
+  /* font-family: "Noto Serif KR", serif; */
+  font-family: "Gowun Batang", serif;
+  /* 핀치줌 방지 */
+  touch-action: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body.scroll-locked {
+  overflow: hidden;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: none;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  color: black;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 420px;
+  background-color: white;
+}
+
+.section {
+  text-align: center;
+  padding: 80px 0;
+
+  &:nth-child(odd) {
+    background-color: rgba(245, 239, 228, 0.4);
+  }
+}
+
+.center {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.beige {
+  color: rgb(220, 203, 168);
+}
+
+.pretendard {
+  font-family: "Pretendard", sans-serif;
+}
+
+.orangered {
+  color: #ee5a24;
+}
+
+.green {
+  color: green;
+}
+
+.small {
+  font-size: 12px;
+}
+
+.name {
+  font-weight: 800;
+  font-size: 1.3em;
+}
+
+/* ========================================
+   초기 로딩 애니메이션
+   ======================================== */
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(247, 242, 232);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.loading-overlay img {
+  height: 60px;
+  width: 60px;
+}
+
+.loading-overlay.hidden {
+  opacity: 0;
+}
+
+.loading-overlay img {
+  animation: heartbeat 1s ease-in-out infinite;
+}
+
+.loading-overlay img.fade-out {
+  animation: heartbeat-fadeout 0.5s ease-out forwards;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.2);
+  }
+  28% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.2);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes heartbeat-fadeout {
+  0% {
+    /* transform: scale(1.2); */
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   어린 시절 섹션
+   ======================================== */
+
+.childhood {
+  padding-right: 8px;
+  padding-left: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.childhood > div {
+  width: 49%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.childhood > div > img {
+  width: 100%;
+  height: 240px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* ========================================
+   갤러리 캐러셀
+   ======================================== */
+
+.gallery {
+  padding-bottom: 0;
+}
+
+.gallery-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 700%;
+  touch-action: pan-y pinch-zoom;
+}
+
+.gallery-slide {
+  width: 14.2857%;
+  flex-shrink: 0;
+}
+
+.gallery-slide img {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 네비게이션 버튼 */
+.gallery-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.gallery-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+  left: 10px;
+}
+
+.next-btn {
+  right: 10px;
+}
+
+/* ========================================
+   날짜 섹션
+   ======================================== */
+
+.date-section {
+  text-align: center;
+}
+
+.date-section button {
+  background-color: white;
+}
+
+.calendar-container {
+  max-width: 350px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.calendar-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 20px;
+}
+
+.calendar-header h2 {
+  margin: 0 0 5px 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.wedding-date {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.calendar {
+  padding: 20px;
+  color: #666;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.calendar-weekdays > div {
+  text-align: center;
+  font-weight: 600;
+
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.calendar-day.other-month {
+  color: #ccc;
+  font-weight: 300;
+}
+
+.calendar-day.wedding-day {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  transform: scale(1.1);
+  border-radius: 9999px;
+}
+
+/* .calendar-day.wedding-day::after {
+  content: "💕";
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 12px;
+  background: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+} */
+
+/* ========================================
+   오시는 길 섹션
+   ======================================== */
+
+.location-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.address {
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.address i {
+  color: #ff6b6b;
+  font-size: 18px;
+}
+
+.map-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  margin: 10px 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#location {
+  text-align: center;
+}
+
+#location img {
+  height: 20px;
+  width: 20px;
+}
+
+/* ========================================
+   반응형 디자인
+   ======================================== */
+/* 
+@media (max-width: 480px) {
+  .gallery-container {
+    max-width: 350px;
+  }
+
+  .gallery-slide img {
+    height: 220px;
+  }
+
+  .gallery-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+
+  .calendar-container {
+    max-width: 320px;
+  }
+
+  .calendar {
+    padding: 15px;
+  }
+
+  .calendar-day {
+    font-size: 14px;
+  }
+
+  .calendar-day.wedding-day {
+    font-size: 16px;
+  }
+
+  .wedding-time,
+  .wedding-location {
+    font-size: 14px;
+  }
+} */
+
+.section.exit {
+  padding: 0;
+  position: relative;
+}
+
+.section.exit img {
+  width: 100%;
+  display: block;
+}
+
+.section.exit .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+#location .location-info {
+  padding-bottom: 20px;
+}
+
+#location .transport-info {
+  text-align: left;
+  padding: 20px;
+}
+
+#location .transport-info .transport-item {
+  border-top: 2px solid rgba(220, 203, 168, 0.422);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

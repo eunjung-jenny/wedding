@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, viewport-fit=cover, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no"
+    />
+    <title>결혼식에 초대합니다</title>
+
+    <!-- PWA 메타 태그 -->
+    <meta
+      name="description"
+      content="최상현 & 전은정의 결혼식 청첩장입니다. 여러분의 참석으로 우리의 특별한 날을 더욱 빛나게 해주세요."
+    />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="청첩장" />
+    <meta name="msapplication-TileColor" content="#667eea" />
+    <meta name="msapplication-config" content="/browserconfig.xml" />
+
+    <!-- PWA 매니페스트 -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Apple 터치 아이콘 -->
+    <link rel="apple-touch-icon" href="icons/icon-152x152.png" />
+
+    <!-- 파비콘 -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="icons/icon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="icons/icon-16x16.png"
+    />
+
+    <!-- 스타일시트 -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&display=swap"
+      rel="stylesheet"
+    /> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Noto+Serif+KR:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <!-- 카카오맵 API -->
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_MAP_API_KEY&libraries=services"
+    ></script>
+  </head>
+  <body>
+    <!-- 초기 로딩 오버레이 -->
+    <div id="loading-overlay" class="loading-overlay">
+      <img src="assets/images/preloader-heart_beige.png" />
+    </div>
+
+    <div class="container">
+      <!-- 대문 사진 -->
+      <div>
+        <img src="assets/images/entrance.JPG" />
+      </div>
+      <!-- 문구 -->
+      <div class="section center">
+        <div class="beige pretendard">INVITATION</div>
+        <br />
+        <div class="title">소중한 분들을 초대합니다</div>
+        <br /><br />
+        <!-- <div>
+          곁에 있을 때<br />
+          가장 나다운 모습이 되게 하는 사람,<br />
+          꿈을 펼칠 수 있도록<br />
+          서로에게 날개가 되어줄 한 사람을 만나<br />
+          삶의 여행을 함께 떠나려 합니다.<br /><br />
+        </div> -->
+        <div>
+          함께 할 때 더 빛나는 우리가<br />이제 하나가 되어<br />더 깊은 사랑을
+          나누려합니다.
+        </div>
+        <br />
+        <div>
+          따뜻한 마음으로 축복해 주시면<br />
+          큰 기쁨으로 간직하겠습니다.
+        </div>
+        <br /><br />
+        <div>
+          <span class="pretendard">최재영·김미순 의 차남</span>
+          <span class="name">최상현</span>
+        </div>
+        <div>
+          <span class="pretendard">전재영·신영순 의 차녀</span>
+          <span class="name">전은정</span>
+        </div>
+        <!-- <br /><br /><br /><br />
+        <div>
+          하늘 아래&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내가 받은<br />가장
+          커다란 선물은 오늘입니다.<br />오늘 받은 선물 가운데서<br />가장
+          아름다운 선물은<br />당신입니다.<br /><br />나태주<br />"선물"
+        </div>
+        <br /><br /><br /><br />
+        <div>최재영·김미순 의 아들 최상현</div>
+        <div>전재영·신영순 의 딸 전은정</div>
+        <br />
+        <div>💕저희 결혼합니다💕</div>
+        <br /><br /><br />
+        <div>
+          함께 할 때 더 빛나는 우리가<br />이제 하나가 되어<br />더 깊은 사랑을
+          나누려합니다.<br />
+          따뜻한 사랑의 응원 부탁드립니다.
+        </div>
+        <br /><br /><br /><br /> -->
+      </div>
+      <!-- 날짜 -->
+      <div class="section date-section">
+        <div class="beige pretendard">WEDDING DAY</div>
+        <br />
+        <div>2025.10.18 토요일 오후 12:30</div>
+        <br />
+        <div class="calendar-container">
+          <div class="calendar">
+            <div class="calendar-weekdays">
+              <div class="orangered">일</div>
+              <div>월</div>
+              <div>화</div>
+              <div>수</div>
+              <div>목</div>
+              <div>금</div>
+              <div>토</div>
+            </div>
+            <div class="calendar-days">
+              <div class="calendar-day other-month">28</div>
+              <div class="calendar-day other-month">29</div>
+              <div class="calendar-day other-month">30</div>
+              <div class="calendar-day">1</div>
+              <div class="calendar-day">2</div>
+              <div class="calendar-day">3</div>
+              <div class="calendar-day">4</div>
+              <div class="calendar-day orangered">5</div>
+              <div class="calendar-day">6</div>
+              <div class="calendar-day">7</div>
+              <div class="calendar-day">8</div>
+              <div class="calendar-day">9</div>
+              <div class="calendar-day">10</div>
+              <div class="calendar-day">11</div>
+              <div class="calendar-day orangered">12</div>
+              <div class="calendar-day">13</div>
+              <div class="calendar-day">14</div>
+              <div class="calendar-day">15</div>
+              <div class="calendar-day">16</div>
+              <div class="calendar-day">17</div>
+              <div class="calendar-day wedding-day">18</div>
+              <div class="calendar-day orangered">19</div>
+              <div class="calendar-day">20</div>
+              <div class="calendar-day">21</div>
+              <div class="calendar-day">22</div>
+              <div class="calendar-day">23</div>
+              <div class="calendar-day">24</div>
+              <div class="calendar-day">25</div>
+              <div class="calendar-day orangered">26</div>
+              <div class="calendar-day">27</div>
+              <div class="calendar-day">28</div>
+              <div class="calendar-day">29</div>
+              <div class="calendar-day">30</div>
+              <div class="calendar-day">31</div>
+              <div class="calendar-day other-month">1</div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="buttons">
+          <button class="btn" onclick="scrollToLocation()">
+            <i class="fas fa-location-dot"></i>위치 안내 바로가기
+          </button>
+        </div>
+      </div>
+      <!-- 어린 시절 -->
+      <div class="section">
+        <div class="beige pretendard">GROOM & BRIDE</div>
+        <br />
+        <div class="childhood">
+          <div>
+            <img src="assets/images/sh_child_1.jpeg" />
+            <div><span class="green small">신랑</span> 최상현</div>
+            <br />
+            <div>설명</div>
+            <br />
+            <div>🌳</div>
+            <br />
+            <div>남의 편이 아닌<br />아내 편이 되겠습니다!</div>
+          </div>
+          <div>
+            <!-- <img src="assets/images/ej_child_1.jpeg" /> -->
+            <img src="assets/images/ej_child_2.jpeg" />
+            <div><span class="orangered small">신부</span> 전은정</div>
+            <br />
+            <div>설명</div>
+            <br />
+            <div>☀️</div>
+            <br />
+            <div>다짐 한 마디</div>
+          </div>
+        </div>
+      </div>
+      <!-- 연애 사진 -->
+      <!-- <div class="section"></div> -->
+      <!-- 갤러리-->
+      <div>
+        <div class="gallery-container">
+          <div class="gallery-wrapper">
+            <!-- 마지막 슬라이드 복제 (무한 캐러셀용) -->
+            <div class="gallery-slide">
+              <img src="assets/images/gallery_8.JPG" alt="갤러리 사진 5" />
+            </div>
+            <!-- 원본 슬라이드들 -->
+            <div class="gallery-slide">
+              <img src="assets/images/gallery_1.JPG" alt="갤러리 사진 1" />
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/gallery_2.JPG" alt="갤러리 사진 2" />
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/gallery_3.JPG" alt="갤러리 사진 3" />
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/gallery_4.JPG" alt="갤러리 사진 4" />
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/gallery_5.JPG" alt="갤러리 사진 5" />
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/gallery_6.JPG" alt="갤러리 사진 6" />
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/gallery_7.JPG" alt="갤러리 사진 7" />
+            </div>
+            <div class="gallery-slide">
+              <img src="assets/images/gallery_8.JPG" alt="갤러리 사진 8" />
+            </div>
+            <!-- 첫 번째 슬라이드 복제 (무한 캐러셀용) -->
+            <div class="gallery-slide">
+              <img src="assets/images/gallery_1.JPG" alt="갤러리 사진 1" />
+            </div>
+          </div>
+          <button class="gallery-btn prev-btn" onclick="prevSlide()">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="gallery-btn next-btn" onclick="nextSlide()">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+      <!-- 오시는 길 -->
+      <div id="location" class="section">
+        <div class="beige pretendard">LOCATION</div>
+        <br />
+        <div class="title">오시는 길</div>
+        <br />
+        <div class="location-info">
+          <div class="address">
+            <i class="fas fa-map-marker-alt"></i>
+            <span
+              >서울시 강동구 천호대로 1077<br />
+              이스트센트럴타워 35층 <strong>LUVEL</strong></span
+            >
+          </div>
+          <div class="map-container">
+            <div id="map" style="width: 100%; height: 300px"></div>
+          </div>
+          <div class="buttons">
+            <button class="btn" onclick="openKakaoMap()">
+              <img src="assets/images/kakaomap.png" />
+              카카오맵
+            </button>
+            <button class="btn" onclick="openNaverMap()">
+              <img src="assets/images/navermap.jpg" />
+              네이버지도
+            </button>
+            <button class="btn" onclick="openTmap()">
+              <img src="assets/images/tmap.png" />
+              티맵
+            </button>
+          </div>
+        </div>
+
+        <!-- <div class="transport-info">
+          <div class="transport-item">
+            <div class="title">🚌 버스</div>
+            <br />
+            <div>130, 341, 342, 370</div>
+            <div>3214, 3316</div>
+            <div>1-4, 23, 30-3, 112, 112-1, 112-5</div>
+            <div>1113, 1113-1, 1113-2, 1113-11, 9301</div>
+            <div>강동역 에서 하차하세요.</div>
+          </div>
+
+          <div class="transport-item">
+            <div class="title">🚆 지하철</div>
+            <br />
+            <div>5호선 강동역 1번 출구에서 연결되어요.</div>
+          </div>
+          <div class="transport-item">
+            <div class="title">🚗 자차</div>
+            <br />
+            <div>
+              "이스트 센트럴 타워 주차장"으로 검색 후 오피스 방면으로
+              들어오세요.
+            </div>
+          </div>
+        </div> -->
+        <br /><br /><br />
+        <!-- 기타 안내 -->
+        <div>🌷화환은 정중히 사양합니다.🌷</div>
+      </div>
+
+      <!-- 마지막 사진 -->
+      <div class="section exit">
+        <img src="assets/images/flower.jpeg" />
+        <div class="overlay">
+          <div>
+            언제나 곁을 따뜻하게 지켜주신<br />모든 분들께 감사드립니다.
+          </div>
+          <br />
+          <div class="name">최상현 ♥ 전은정</div>
+          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
