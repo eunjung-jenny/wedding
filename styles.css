@@ -414,9 +414,90 @@ img {
 }
 
 /* ========================================
-   반응형 디자인
+   계좌번호 섹션 스타일
    ======================================== */
-/* 
+
+#account {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.account-section {
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: white;
+  /* background-color: rgba(242, 238, 230, 0.155); */
+  background-color: rgba(254, 253, 249, 0.771);
+  overflow: hidden;
+}
+
+.account-header {
+  padding: 15px 20px;
+  /* background-color: rgba(242, 238, 230, 0.155); */
+  background-color: rgba(254, 250, 241, 0.739);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.account-header:hover {
+  background-color: #f0f0f0;
+}
+
+.account-header i {
+  transition: transform 0.3s ease;
+  color: #999;
+}
+
+.account-header.active i {
+  transform: rotate(180deg);
+}
+
+.account-content {
+  padding: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.account-item {
+  padding: 10px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.account-item:last-child {
+  border-bottom: none;
+}
+
+.account-btn {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: #333;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 120px;
+}
+
+.account-btn:hover {
+  background-color: #f8f8f8;
+  border-color: #ccc;
+}
+
+.account-btn i {
+  margin-right: 4px;
+  font-size: 11px;
+}
+
+/* 반응형 */
 @media (max-width: 480px) {
   .gallery-container {
     max-width: 350px;
@@ -452,7 +533,15 @@ img {
   .wedding-location {
     font-size: 14px;
   }
-} */
+
+  .account-buttons {
+    flex-direction: column;
+  }
+
+  .account-btn {
+    min-width: unset;
+  }
+}
 
 .section.exit {
   padding: 0;

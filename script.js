@@ -356,8 +356,130 @@ function scrollToLocation() {
 }
 
 // ========================================
-// 메인 초기화
+// 계좌번호 섹션 기능
 // ========================================
+
+// 계좌번호 섹션 토글
+function toggleAccount(type) {
+  const content = document.getElementById(`${type}-account`);
+  const arrow = document.getElementById(`${type}-arrow`);
+  const header = arrow.parentElement;
+
+  if (content.style.display === "none") {
+    content.style.display = "block";
+    header.classList.add("active");
+  } else {
+    content.style.display = "none";
+    header.classList.remove("active");
+  }
+}
+
+// 계좌번호 복사
+function copyAccount(accountNumber) {
+  // 하이픈 제거된 계좌번호를 하이픈과 함께 포맷팅
+  let formattedAccount = accountNumber;
+
+  // 계좌번호 패턴에 따라 하이픈 추가
+  if (accountNumber.startsWith("1002")) {
+    formattedAccount = accountNumber.replace(
+      /(\d{4})(\d{3})(\d{6})/,
+      "$1-$2-$3"
+    );
+  } else if (accountNumber.startsWith("302")) {
+    formattedAccount = accountNumber.replace(
+      /(\d{3})(\d{4})(\d{4})(\d{2})/,
+      "$1-$2-$3-$4"
+    );
+  }
+
+  if (navigator.clipboard && window.isSecureContext) {
+    // 클립보드 API 사용 (HTTPS 환경)
+    navigator.clipboard
+      .writeText(formattedAccount)
+      .then(() => {
+        showToast("계좌번호가 복사되었습니다.");
+      })
+      .catch(() => {
+        fallbackCopyTextToClipboard(formattedAccount);
+      });
+  } else {
+    // 폴백 방법 (HTTP 환경)
+    fallbackCopyTextToClipboard(formattedAccount);
+  }
+}
+
+// 폴백 복사 방법
+function fallbackCopyTextToClipboard(text) {
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.style.top = "0";
+  textArea.style.left = "0";
+  textArea.style.position = "fixed";
+  textArea.style.opacity = "0";
+
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    document.execCommand("copy");
+    showToast("계좌번호가 복사되었습니다.");
+  } catch (err) {
+    showToast("복사에 실패했습니다.");
+  }
+
+  document.body.removeChild(textArea);
+}
+
+// 토스트 메시지 표시
+function showToast(message) {
+  // 기존 토스트가 있으면 제거
+  const existingToast = document.querySelector(".toast");
+  if (existingToast) {
+    existingToast.remove();
+  }
+
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-size: 14px;
+    z-index: 1000;
+    animation: toastFadeInOut 2s ease-in-out;
+  `;
+
+  // 토스트 애니메이션 CSS 추가
+  if (!document.querySelector("#toast-style")) {
+    const style = document.createElement("style");
+    style.id = "toast-style";
+    style.textContent = `
+      @keyframes toastFadeInOut {
+        0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  document.body.appendChild(toast);
+
+  // 2초 후 토스트 제거
+  setTimeout(() => {
+    if (toast.parentNode) {
+      toast.remove();
+    }
+  }, 2000);
+}
 
 document.addEventListener("DOMContentLoaded", function () {
   showInitialAnimation();
