@@ -214,6 +214,8 @@ img {
 
 .gallery-slide img {
   width: 100%;
+  height: auto;
+  max-height: 100vh;
   object-fit: cover;
   display: block;
 }
@@ -500,11 +502,11 @@ img {
 /* 반응형 */
 @media (max-width: 480px) {
   .gallery-container {
-    max-width: 350px;
   }
 
   .gallery-slide img {
-    height: 220px;
+    height: auto;
+    object-fit: cover;
   }
 
   .gallery-btn {
