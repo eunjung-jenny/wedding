@@ -268,44 +268,61 @@ function createMap() {
     return;
   }
 
-  const geocoder = new kakao.maps.services.Geocoder();
-  const address = "서울시 강동구 천호대로 1077 이스트센트럴타워";
+  // 키워드 검색을 사용하여 정확한 "루벨 강동" 위치 찾기
+  const places = new kakao.maps.services.Places();
 
-  geocoder.addressSearch(address, (result, status) => {
+  places.keywordSearch("루벨 강동", (data, status) => {
     if (status === kakao.maps.services.Status.OK) {
-      const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-      const mapContainer = document.getElementById("map");
-      const mapOption = {
-        center: coords,
-        level: 3,
-      };
-
-      map = new kakao.maps.Map(mapContainer, mapOption);
-      marker = new kakao.maps.Marker({
-        map: map,
-        position: coords,
-      });
-
-      const infowindow = new kakao.maps.InfoWindow({
-        content:
-          '<div style="padding:5px;font-size:12px;">이스트센트럴타워 35층</div>',
-      });
-
-      // 마커 이벤트
-      kakao.maps.event.addListener(marker, "mouseover", () => {
-        infowindow.open(map, marker);
-      });
-
-      kakao.maps.event.addListener(marker, "mouseout", () => {
-        infowindow.close();
-      });
-
-      kakao.maps.event.addListener(marker, "click", () => {
-        infowindow.open(map, marker);
-      });
+      // 첫 번째 검색 결과가 가장 정확한 위치
+      const place = data[0];
+      const coords = new kakao.maps.LatLng(place.y, place.x);
+      createMapWithCoords(coords, place.place_name);
     } else {
-      showMapError("주소를 찾을 수 없습니다");
+      // 키워드 검색 실패 시 주소 검색으로 폴백
+      const geocoder = new kakao.maps.services.Geocoder();
+      geocoder.addressSearch("서울 강동구 천호대로 1077", (result, status) => {
+        if (status === kakao.maps.services.Status.OK) {
+          createMapWithCoords(
+            new kakao.maps.LatLng(result[0].y, result[0].x),
+            "이스트센트럴타워"
+          );
+        } else {
+          showMapError("주소를 찾을 수 없습니다");
+        }
+      });
     }
+  });
+}
+
+// 좌표로 지도 생성
+function createMapWithCoords(coords, placeName = "루벨 강동") {
+  const mapContainer = document.getElementById("map");
+  const mapOption = {
+    center: coords,
+    level: 3,
+  };
+
+  map = new kakao.maps.Map(mapContainer, mapOption);
+  marker = new kakao.maps.Marker({
+    map: map,
+    position: coords,
+  });
+
+  const infowindow = new kakao.maps.InfoWindow({
+    content: `<div style="padding:5px;font-size:12px;">${placeName}</div>`,
+  });
+
+  // 마커 이벤트
+  kakao.maps.event.addListener(marker, "mouseover", () => {
+    infowindow.open(map, marker);
+  });
+
+  kakao.maps.event.addListener(marker, "mouseout", () => {
+    infowindow.close();
+  });
+
+  kakao.maps.event.addListener(marker, "click", () => {
+    infowindow.open(map, marker);
   });
 }
 
