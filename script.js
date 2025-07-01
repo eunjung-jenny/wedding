@@ -169,69 +169,132 @@ function updateSlide(animate = true) {
 function addTouchEvents() {
   const wrapper = document.querySelector(".gallery-wrapper");
   let startX = 0;
+  let startY = 0;
   let endX = 0;
+  let endY = 0;
   let isDragging = false;
+  let touchDirection = null; // 'horizontal', 'vertical', null
 
   // 터치 이벤트
   wrapper.addEventListener("touchstart", (e) => {
     if (isTransitioning) return;
     startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
     isDragging = true;
+    touchDirection = null;
   });
 
   wrapper.addEventListener("touchmove", (e) => {
     if (!isDragging) return;
-    e.preventDefault();
+
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const diffX = Math.abs(currentX - startX);
+    const diffY = Math.abs(currentY - startY);
+
+    // 터치 방향이 아직 결정되지 않았을 때만 계산
+    if (touchDirection === null && (diffX > 10 || diffY > 10)) {
+      // 각도 계산 (수평에서 벗어난 각도)
+      const angle = Math.atan2(diffY, diffX) * (180 / Math.PI);
+
+      // 45도 기준으로 수평/수직 구분
+      if (angle < 45) {
+        touchDirection = "horizontal";
+      } else {
+        touchDirection = "vertical";
+      }
+    }
+
+    // 수평 스와이프인 경우에만 기본 스크롤 방지
+    if (touchDirection === "horizontal") {
+      e.preventDefault();
+    }
+    // 수직 스크롤인 경우 기본 스크롤 허용 (preventDefault 하지 않음)
   });
 
   wrapper.addEventListener("touchend", (e) => {
     if (!isDragging || isTransitioning) return;
 
     endX = e.changedTouches[0].clientX;
+    endY = e.changedTouches[0].clientY;
     const diffX = startX - endX;
+    const diffY = startY - endY;
     const threshold = 50;
 
-    if (Math.abs(diffX) > threshold) {
+    // 수평 스와이프였고 임계값을 넘은 경우에만 슬라이드 변경
+    if (touchDirection === "horizontal" && Math.abs(diffX) > threshold) {
       if (diffX > 0) {
         nextSlide();
       } else {
         prevSlide();
       }
     }
+
     isDragging = false;
+    touchDirection = null;
   });
 
-  // 마우스 이벤트
+  // 마우스 이벤트 (데스크톱용)
+  let mouseDirection = null;
+
   wrapper.addEventListener("mousedown", (e) => {
     if (isTransitioning) return;
     startX = e.clientX;
+    startY = e.clientY;
     isDragging = true;
+    mouseDirection = null;
   });
 
   wrapper.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
-    e.preventDefault();
+
+    const currentX = e.clientX;
+    const currentY = e.clientY;
+    const diffX = Math.abs(currentX - startX);
+    const diffY = Math.abs(currentY - startY);
+
+    // 마우스 방향이 아직 결정되지 않았을 때만 계산
+    if (mouseDirection === null && (diffX > 10 || diffY > 10)) {
+      const angle = Math.atan2(diffY, diffX) * (180 / Math.PI);
+
+      if (angle < 45) {
+        mouseDirection = "horizontal";
+      } else {
+        mouseDirection = "vertical";
+      }
+    }
+
+    // 수평 드래그인 경우에만 기본 동작 방지
+    if (mouseDirection === "horizontal") {
+      e.preventDefault();
+    }
   });
 
   wrapper.addEventListener("mouseup", (e) => {
     if (!isDragging || isTransitioning) return;
 
     endX = e.clientX;
+    endY = e.clientY;
     const diffX = startX - endX;
+    const diffY = startY - endY;
     const threshold = 50;
 
-    if (Math.abs(diffX) > threshold) {
+    // 수평 드래그였고 임계값을 넘은 경우에만 슬라이드 변경
+    if (mouseDirection === "horizontal" && Math.abs(diffX) > threshold) {
       if (diffX > 0) {
         nextSlide();
       } else {
         prevSlide();
       }
     }
+
     isDragging = false;
+    mouseDirection = null;
   });
 
   wrapper.addEventListener("mouseleave", () => {
     isDragging = false;
+    mouseDirection = null;
   });
 }
 
