@@ -466,7 +466,6 @@ img {
 .account-content.open {
   max-height: 800px;
   opacity: 1;
-  padding: 16px 0;
 }
 
 .account-item {
