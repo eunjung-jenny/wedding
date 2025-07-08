@@ -100,7 +100,7 @@ async function showInitialAnimation() {
 
 // 갤러리 상태 변수
 let currentSlideIndex = 1;
-const totalSlides = 8;
+const totalSlides = 7;
 let isTransitioning = false;
 const animationDuration = 200;
 
