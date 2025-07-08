@@ -445,11 +445,11 @@ function toggleAccount(type) {
   const arrow = document.getElementById(`${type}-arrow`);
   const header = arrow.parentElement;
 
-  if (content.style.display === "none") {
-    content.style.display = "block";
+  if (!content.classList.contains("open")) {
+    content.classList.add("open");
     header.classList.add("active");
   } else {
-    content.style.display = "none";
+    content.classList.remove("open");
     header.classList.remove("active");
   }
 }

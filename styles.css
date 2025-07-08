@@ -456,9 +456,17 @@ img {
 }
 
 .account-content {
-  padding: 0;
+  max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.35s ease-in-out, opacity 0.35s ease-in-out,
+    padding 0.35s ease-in-out;
+  opacity: 0;
+  padding: 0;
+}
+.account-content.open {
+  max-height: 800px;
+  opacity: 1;
+  padding: 16px 0;
 }
 
 .account-item {
