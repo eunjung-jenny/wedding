@@ -566,4 +566,23 @@ document.addEventListener("DOMContentLoaded", function () {
   initGallery();
   addTouchEvents();
   initKakaoMap();
+
+  const sections = document.querySelectorAll(".section");
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          observer.unobserve(entry.target); // 한 번만 애니메이션 적용
+        }
+      });
+    },
+    {
+      threshold: 0.2, // 20%만 보여도 애니메이션 실행
+    }
+  );
+
+  sections.forEach((section) => {
+    observer.observe(section);
+  });
 });
