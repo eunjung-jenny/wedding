@@ -478,7 +478,7 @@ function scrollToLocation() {
 // URL 쿼리 파라미터에서 flag 값 확인
 function checkUrlFlag() {
   const urlParams = new URLSearchParams(window.location.search);
-  const flag = urlParams.get("hideAccount");
+  const flag = urlParams.get("h");
 
   // flag 파라미터가 있으면 계좌번호 섹션 숨기기
   if (flag) {
