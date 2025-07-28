@@ -436,6 +436,24 @@ function scrollToLocation() {
 }
 
 // ========================================
+// URL 파라미터 체크 모듈
+// ========================================
+
+// URL 쿼리 파라미터에서 flag 값 확인
+function checkUrlFlag() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const flag = urlParams.get("hideAccount");
+
+  // flag 파라미터가 있으면 계좌번호 섹션 숨기기
+  if (flag) {
+    const accountSection = document.getElementById("account");
+    if (accountSection) {
+      accountSection.style.display = "none";
+    }
+  }
+}
+
+// ========================================
 // 계좌번호 섹션 기능
 // ========================================
 
@@ -566,6 +584,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initGallery();
   addTouchEvents();
   initKakaoMap();
+  checkUrlFlag();
 
   const sections = document.querySelectorAll(".section");
   const observer = new IntersectionObserver(
