@@ -107,6 +107,7 @@ const animationDuration = 200;
 // 갤러리 초기화
 function initGallery() {
   updateSlide();
+  updatePreview();
 }
 
 // 다음 슬라이드로 이동
@@ -163,6 +164,41 @@ function updateSlide(animate = true) {
   }
 
   wrapper.style.transform = `translateX(${translateX}%)`;
+
+  // 미리보기 업데이트
+  updatePreview();
+}
+
+// 미리보기 업데이트
+function updatePreview() {
+  const previewItems = document.querySelectorAll(".preview-item");
+
+  previewItems.forEach((item, index) => {
+    // data-slide 속성값에 따라 활성화 (1부터 시작)
+    const slideNumber = index + 1;
+    if (slideNumber === currentSlideIndex) {
+      item.classList.add("active");
+    } else {
+      item.classList.remove("active");
+    }
+  });
+}
+
+// 미리보기 클릭 이벤트
+function addPreviewEvents() {
+  const previewItems = document.querySelectorAll(".preview-item");
+
+  previewItems.forEach((item, index) => {
+    item.addEventListener("click", () => {
+      if (isTransitioning) return;
+
+      const targetSlide = index + 1;
+      if (targetSlide !== currentSlideIndex) {
+        currentSlideIndex = targetSlide;
+        updateSlide();
+      }
+    });
+  });
 }
 
 // 터치/마우스 이벤트 처리
@@ -583,6 +619,7 @@ document.addEventListener("DOMContentLoaded", function () {
   showInitialAnimation();
   initGallery();
   addTouchEvents();
+  addPreviewEvents();
   initKakaoMap();
   checkUrlFlag();
 
