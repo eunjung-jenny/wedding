@@ -62,6 +62,33 @@ function preventZoom() {
 }
 
 // ========================================
+// 이미지 프리로딩 모듈
+// ========================================
+
+// 이미지 프리로딩
+function preloadImages() {
+  const imageUrls = [
+    "assets/images/drawing.jpeg",
+    "assets/images/sh_child_1.jpeg",
+    "assets/images/ej_child_3.jpeg",
+    "assets/images/gallery_1.jpg",
+    "assets/images/gallery_2.jpg",
+    "assets/images/gallery_3.jpg",
+    "assets/images/gallery_5.JPG",
+    "assets/images/gallery_6.jpg",
+    "assets/images/gallery_7.jpg",
+    "assets/images/gallery_8.JPG",
+    "assets/images/flower.jpeg",
+  ];
+
+  // 이미지들을 백그라운드에서 로드
+  imageUrls.forEach((url) => {
+    const img = new Image();
+    img.src = url;
+  });
+}
+
+// ========================================
 // 초기 로딩 애니메이션 모듈
 // ========================================
 
@@ -74,8 +101,8 @@ async function showInitialAnimation() {
   // 스크롤 방지
   body.classList.add("scroll-locked");
 
-  // 1.3초 대기 (심장 박동 애니메이션)
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  // 1초 대기 (심장 박동 애니메이션)
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
   // 하트 이미지에 fade-out 클래스 추가 (확대되면서 페이드아웃)
   heartImage.classList.add("fade-out");
@@ -103,11 +130,33 @@ let currentSlideIndex = 1;
 const totalSlides = 7;
 let isTransitioning = false;
 const animationDuration = 200;
+let galleryImagesLoaded = 0;
+const totalGalleryImages = 7;
 
 // 갤러리 초기화
 function initGallery() {
-  updateSlide();
-  updatePreview();
+  // 갤러리 이미지 로딩 상태 확인
+  const galleryImages = document.querySelectorAll(".gallery-slide img");
+  galleryImages.forEach((img) => {
+    if (img.complete) {
+      galleryImagesLoaded++;
+    } else {
+      img.addEventListener("load", () => {
+        galleryImagesLoaded++;
+        if (galleryImagesLoaded >= totalGalleryImages) {
+          // 모든 이미지가 로드되면 갤러리 초기화
+          updateSlide();
+          updatePreview();
+        }
+      });
+    }
+  });
+
+  // 이미 모든 이미지가 로드된 경우
+  if (galleryImagesLoaded >= totalGalleryImages) {
+    updateSlide();
+    updatePreview();
+  }
 }
 
 // 다음 슬라이드로 이동
@@ -616,6 +665,9 @@ function showToast(message) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  // 이미지 프리로딩 시작
+  preloadImages();
+
   showInitialAnimation();
   initGallery();
   addTouchEvents();
